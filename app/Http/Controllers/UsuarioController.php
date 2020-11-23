@@ -29,9 +29,24 @@ class UsuarioController extends Controller
             'usuario' => 'required',
             'contrasena' => 'required',
             'nombre' => 'required',
+            'correo' => 'required'
         ]);
 
         Cliente::create($request->all());
+
+        $request->merge([
+            'id_tipo'=>1
+        ]);
+        
+        $usuario = new Cliente();
+        
+        $usuario->usuario = $request->usuario;
+        $usuario->nombre = $request->nombre;
+        $usuario->contrasena = $request->contrasena;
+        $usuario->correo = $request->correo;
+        $usuario->id_tipo = $request->id_tipo;
+
+        $usuario->save();
 
         return $request;
     }

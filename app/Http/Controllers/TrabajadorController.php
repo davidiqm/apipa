@@ -32,12 +32,22 @@ class TrabajadorController extends Controller
             'edad' => 'required',
             'correo' => 'required'
         ]);
-        
+
         $request->merge([
             'id_tipo'=>2
         ]);
+        
+        $trabajador = new Trabajador();
+        
+        $trabajador->usuario = $request->usuario;
+        $trabajador->nombre = $request->nombre;
+        $trabajador->oficio = $request->oficio;
+        $trabajador->edad = (int)$request->edad;
+        $trabajador->correo = $request->correo;
+        $trabajador->id_tipo = $request->id_tipo;
 
-        Trabajador::create($request->all());
+        $trabajador->save();
+
 
         return $request;
     }
