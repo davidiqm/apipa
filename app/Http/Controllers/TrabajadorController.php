@@ -58,9 +58,9 @@ class TrabajadorController extends Controller
      * @param  \App\Models\Trabajador  $trabajador
      * @return \Illuminate\Http\Response
      */
-    public function show(Trabajador $trabajador)
+    public function show($trabajador)
     {
-        return $trabajador;
+        return Trabajador::findOrFail($trabajador);
     }
 
     /**
@@ -83,8 +83,8 @@ class TrabajadorController extends Controller
      * @param  \App\Models\Trabajador  $trabajador
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Trabajador $trabajador)
+    public function destroy($trabajador)
     {
-        $trabajador->delete();
+        Trabajador::destroy($trabajador);
     }
 }
